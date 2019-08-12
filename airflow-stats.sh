@@ -30,9 +30,12 @@ curl "https://libraries.io/api/pypi/apache-airflow/usage?api_key=${LIB_IO_API_KE
 # GITHUB #
 ##########
 
-# Get a bunch of info about the repo - store it in github-info.json
-curl "https://api.github.com/repos/apache/airflow" >> github-info.json
+# Get a bunch of info about the repos - store it in file
+curl "https://api.github.com/repos/apache/airflow" >> github-repo-info-airflow.json
+curl "https://api.github.com/repos/spotify/luigi" >> github-repo-info-luigi.json
 
-# Get top 100 contributors and put in contributors.json
-curl "https://api.github.com/repos/apache/airflow/stats/contributors" >> contributors.json
+# Get top 100 contributors and store in file
+curl "https://api.github.com/repos/apache/airflow/stats/contributors" >> github-contributors-airflow.json
+
+
 
