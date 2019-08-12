@@ -12,7 +12,7 @@ twurl /1.1/followers/ids.json?screen_name=ApacheAirflow >> twitter.json
 ########
 
 # Get PyPI info and put it in a file called pypi.json
-curl -"https://pypi.org/pypi/apache-airflow/json" >> pypi.json
+curl "https://pypi.org/pypi/apache-airflow/json" >> pypi.json
 
 ################
 # LIBRARIES.IO #
@@ -21,11 +21,12 @@ curl -"https://pypi.org/pypi/apache-airflow/json" >> pypi.json
 #TODO: Add your API key here OR run a script to set your env vars
 #LIB_IO_API_KEY="your-key-here"
 #TODO: Add a check for variable
-# Get Libraries IO dependents, put in file libraries-io-dependents.json
+# Get Libraries IO package dependents, put in file libraries-io-dependents.json
 curl "https://libraries.io/api/pypi/apache-airflow/dependents?api_key=${LIB_IO_API_KEY}" >> libraries-io-dependents.json
 # Get Libraries IO usage, put in file libraries-io-usage.json
 curl "https://libraries.io/api/pypi/apache-airflow/usage?api_key=${LIB_IO_API_KEY}" >> libraries-io-usage.json
-
+#Get repos dependent on apache-airflow
+curl "https://libraries.io/api/pypi/apache-airflow/dependent_repositories?api_key=${LIB_IO_API_KEY}" >> libraries-io-dependent-repos.json
 ##########
 # GITHUB #
 ##########
