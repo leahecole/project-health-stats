@@ -15,10 +15,12 @@ Optional environment variables
 
 # Usage
 
-The when the `project-stats.sh` script is run, the results are saved in JSON files - one for each curl command in the script. Once your environment variables are set, change to the directory where you'd like your output to be saved and run the following command:
+Clone this repo and change into the directory. Once you've set the environment variables in the [Setup](#Setup) section, run the project-stats script with the following command:
 
 `bash project-stats.sh`
 
+
+Note: The when the `project-stats.sh` script is run, the results are saved in JSON files *in your current directory* - one for each curl command in the script. See the [limitations](#limitations) section for more info about possible pain points regarding those files. If you want these files saved in a different location, either modify the script, or call the script from the location where you'd like them saved.
 
 When the command has finshed running, you can explore your data manually. 
 
