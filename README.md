@@ -11,7 +11,7 @@ Set the following environment variables to the appropriate values
 Optional environment variables
 
 * `GITHUB_ORG_COMPARE` - the name of a second GitHub org you're using when comparing stats
-* `GITHUB_REPO_COMPARE` - the name of a second GitHub repo (in the GITHUB_ORG_COMPARE org)
+* `GITHUB_REPO_COMPARE` - the name of a second GitHub repo (in the `GITHUB_ORG_COMPARE` org)
 
 # Usage
 
@@ -24,3 +24,9 @@ When the command has finshed running, you can explore your data manually.
 
 TODO: Instructions for Python script. 
 
+
+# Limitations
+
+* As long as the curl command is valid, it will execute. If the command returns an error response, that will be printed in the \*.json file.
+* The output files of project-stats.sh will be in your current directory. This may not be the best place. Feel free to adjust the output location as you see fit.
+* If the file already exists, the results will append to the current file. This can cause problems in post processing.
