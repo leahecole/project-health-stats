@@ -1,3 +1,8 @@
+# Requirements
+
+* Assumes user has a command line with capability to run Bash scripts
+* Assumes user has Python 3 installed. Python script has not been tested with Python 2. 
+
 # Setup
 
 Set the following environment variables to the appropriate values
@@ -24,7 +29,9 @@ Note: The when the `project-stats.sh` script is run, the results are saved in JS
 
 When the command has finshed running, you can explore your data manually. 
 
-TODO: Instructions for Python script. 
+Or, you can run a python script that prints out some aggregate statistics. This script is a work in progress, and its [limitations](#limitations) are noted. To run the Python script, run:
+
+`python gather-stats.py`
 
 
 # Limitations
@@ -32,3 +39,8 @@ TODO: Instructions for Python script.
 * As long as the curl command is valid, it will execute. If the command returns an error response, that will be printed in the \*.json file.
 * The output files of project-stats.sh will be in your current directory. This may not be the best place. Feel free to adjust the output location as you see fit.
 * If the file already exists, the results will append to the current file. This can cause problems in post processing.
+* Python script only prints values, it does not save the aggregate values anywhere for future consumption.
+
+# Feedback
+
+Please open up issues and submit PRs, but know that this is a side project and may not be addressed in a timely fashion.
