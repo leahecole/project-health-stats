@@ -47,7 +47,7 @@ except KeyError:
 # with open('libraries-io-dependent-repos.json', 'r') as read_file:
 #  data = json.load(read_file)
 
-# github airflow
+# github info 
 try:
   with open('github-repo-info-{}.json'.format(os.environ['GITHUB_REPO']), 'r') as read_file:
     data = json.load(read_file)
@@ -59,4 +59,15 @@ except FileNotFoundError:
 
 #airflow contributors
 
-# github luigi
+# github comparison info
+
+try:
+  with open('github-repo-info-{}.json'.format(os.environ['GITHUB_REPO_COMPARE']), 'r') as read_file:
+    data = json.load(read_file)
+    print('There are {} watches, {} stars, and {} forks of {}/{} on GitHub'.format(data['subscribers_count'], data['stargazers_count'], data['forks_count'], os.environ['GITHUB_ORG_COMPARE'], os.environ['GITHUB_REPO_COMPARE']))
+except KeyError:
+  print('ERROR reading GitHub info. Double check that the environment variables $GITHUB_ORG_COMPARE and $GITHUB_REPO_COMPARE are set and that your github-repo-info-${GITHUB_REPO_COMPARE}.json file is valid.\n\n If you did not specify a GitHub repo to compare to, you may disregard this error.')
+except FileNotFoundError:
+  print('ERROR reading GitHub info. Double check that the environment variable \$GITHUB_REPO_COMPARE is set.\n\n If you did not specify a GitHub repo to compare to, you may disregard this error.')
+
+#airflow contributors
