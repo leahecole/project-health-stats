@@ -58,6 +58,41 @@ except FileNotFoundError:
   print('ERROR reading GitHub info. Double check that the environment variable \$GITHUB_REPO is set.\n')
 
 #airflow contributors
+'''
+#Loop through data, take previous 4 weeks and total additions subtractions commits
+for i in range(len(data)):
+  data[i]['weeks'] = data[i]['weeks'][-5:-1]
+  thisMonthCommits = 0
+  thisMonthAdditions = 0
+  thisMonthSubtractions = 0
+  for j in range(len(data[i]['weeks])):
+    thisMonthCommits += data[i]['weeks'][j]['c']
+    thisMonthAdditions += data[i]['weeks'][j]['a']
+    thisMonthSubtractions += data[i]['weeks'][j]['s']
+  data[i]['thisMonthCommits'] = thisMonthCommits
+  data[i]['thisMonthAdditions'] = thisMonthAdditions
+  data[i]['thisMonthSubtractions'] = thisMonthSubtractions
+
+
+# Make three sorted lists by commits, additions subtractions
+sortedThisMonthCommits = sorted(data, key=lambda i: i['thisMonthCommits'], reverse=True)
+sortedThisMonthAdditions = sorted(data, key=lambda i: i['thisMonthAdditions'], reverse=True)
+sortedThisMonthSubtractions = sorted(data, key=lambda i: i['thisMonthSubtractions'], reverse=True)
+
+#Go through and pull out the names for easy printing
+top5Commits=[]
+top5Additions=[]
+top5Subtractions=[]
+
+for i in range(5):
+  top5Commits.append((sortedThisMonthCommits[i]['author']['login']['thisMonthCommits']
+  top5Additions.append((sortedThisMonthAdditions[i]['author']['login']['thisMonthAdditions']
+  top5Subtractions.append((sortedThisMonthSubtractions[i]['author']['login']['thisMonthSubtractions']
+
+#TODO: Add printing logic that loops through these
+#TODO: Add error checking
+
+'''
 
 # github comparison info
 
