@@ -27,7 +27,7 @@ Clone this repo and change into the directory. Once you've set the environment v
 `bash project-stats.sh`
 
 
-Note: The when the `project-stats.sh` script is run, the results are saved in JSON files in a folder named with today's date - one for each curl command in the script. See the [limitations](#limitations) section for more info about possible pain points regarding those files. If you want these files saved in a different location, either modify the script, or call the script from the location where you'd like them saved.
+Note: The when the `project-stats.sh` script is run, the results are saved in JSON files in a folder named with today's date, in a subdirectory named for the Epoch time that the stats were gathered - one for each curl command in the script. See the [limitations](#limitations) section for more info about possible pain points regarding those files. If you want these files saved in a different location, either modify the script, or call the script from the location where you'd like them saved.
 
 When the command has finshed running, you can explore your data manually. 
 
@@ -39,8 +39,7 @@ Or, you can run a python script that prints out some aggregate statistics. This 
 # Limitations
 
 * As long as the curl command is valid, it will execute. If the command returns an error response, that will be printed in the \*.json file.
-* The output files of project-stats.sh will be in a folder named with today's date in YYYY-MM-DD format. If that folder does not exist, it will be created. If it does exist, it will be used. This may not be the best place. Feel free to adjust the output location and modify the script as you see fit.
-* Each file has the time in Epoch value appended to the filename to avoid collision. Feel free to use an [Epoch time converter](https://www.epochconverter.com/) if you need to see precisely what time that file was created. 
+* The output files of project-stats.sh will be in a folder named with today's date in YYYY-MM-DD format. If that folder does not exist, it will be created. If it does exist, it will be used. This may not be the best place. Feel free to adjust the output location and modify the script as you see fit. The output files will be in a subdirectory within that folder named for the Epoch time value the stats were collected at - this is done to avoid collision.Feel free to use an [Epoch time converter](https://www.epochconverter.com/) if you need to see precisely what time that file was created. 
 * Python script only prints values, it does not save the aggregate values anywhere for future consumption.
 
 # Feedback
