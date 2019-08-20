@@ -2,6 +2,8 @@
 
 * Assumes user has a command line with capability to run Bash scripts
 * Assumes user has Python 3 installed. Python script has not been tested with Python 2. 
+* User has access to Twitter API and has [authorized](https://developer.twitter.com/en/docs/tutorials/using-twurl.html) `twurl`
+* User has libraries.io API key
 
 # Setup
 
@@ -25,7 +27,7 @@ Clone this repo and change into the directory. Once you've set the environment v
 `bash project-stats.sh`
 
 
-Note: The when the `project-stats.sh` script is run, the results are saved in JSON files *in your current directory* - one for each curl command in the script. See the [limitations](#limitations) section for more info about possible pain points regarding those files. If you want these files saved in a different location, either modify the script, or call the script from the location where you'd like them saved.
+Note: The when the `project-stats.sh` script is run, the results are saved in JSON files in a folder named with today's date - one for each curl command in the script. See the [limitations](#limitations) section for more info about possible pain points regarding those files. If you want these files saved in a different location, either modify the script, or call the script from the location where you'd like them saved.
 
 When the command has finshed running, you can explore your data manually. 
 
@@ -37,8 +39,8 @@ Or, you can run a python script that prints out some aggregate statistics. This 
 # Limitations
 
 * As long as the curl command is valid, it will execute. If the command returns an error response, that will be printed in the \*.json file.
-* The output files of project-stats.sh will be in your current directory. This may not be the best place. Feel free to adjust the output location as you see fit.
-* If the file already exists, the results will append to the current file. This can cause problems in post processing.
+* The output files of project-stats.sh will be in a folder named with today's date in YYYY-MM-DD format. If that folder does not exist, it will be created. If it does exist, it will be used. This may not be the best place. Feel free to adjust the output location and modify the script as you see fit.
+* Each file has the time in Epoch value appended to the filename to avoid collision. Feel free to use an [Epoch time converter](https://www.epochconverter.com/) if you need to see precisely what time that file was created. 
 * Python script only prints values, it does not save the aggregate values anywhere for future consumption.
 
 # Feedback

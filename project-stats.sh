@@ -29,36 +29,47 @@ else
   curl "https://api.github.com/repos/${GITHUB_ORG_COMPARE}/${GITHUB_REPO_COMPARE}" >> github-repo-info-${GITHUB_REPO_COMPARE}.json
 fi
 
+# GET time in epoch format
+CURRENT_DATE=`date +%Y-%m-%d`
+CURRENT_EPOCH_TIME=`date +%s`
+
+# if there isn't an output directory for the current date, make it
+if [ ! -d ${CURRENT_DATE} ]; then
+  mkdir ${CURRENT_DATE}
+fi
+# change into that directory
+cd ${CURRENT_DATE}
+
 ###########
 # TWITTER #
 ###########
 # User must have twurl and be authorized
 # Get Twitter followers, put them in a file called twitter.json
-twurl /1.1/followers/ids.json?screen_name=${TWITTER_HANDLE} >> twitter.json
+twurl /1.1/followers/ids.json?screen_name=${TWITTER_HANDLE} >> twitter-${CURRENT_EPOCH_TIME}.json
 
 # PYPI #
 ########
 # Get PyPI info and put it in a file called pypi.json
-curl "https://pypi.org/pypi/${PYPI_PACKAGE}/json" >> pypi.json
+curl "https://pypi.org/pypi/${PYPI_PACKAGE}/json" >> pypi-${CURRENT_EPOCH_TIME}.json
 
 ################
 # LIBRARIES.IO #
 ################
 # Get Libraries IO package dependents, put in file libraries-io-dependents.json
-curl "https://libraries.io/api/pypi/${PYPI_PACKAGE}/dependents?api_key=${LIB_IO_API_KEY}" >> libraries-io-dependents.json
+curl "https://libraries.io/api/pypi/${PYPI_PACKAGE}/dependents?api_key=${LIB_IO_API_KEY}" >> libraries-io-dependents-${CURRENT_EPOCH_TIME}.json
 # Get Libraries IO usage, put in file libraries-io-usage.json
-curl "https://libraries.io/api/pypi/${PYPI_PACKAGE}/usage?api_key=${LIB_IO_API_KEY}" >> libraries-io-usage.json
+curl "https://libraries.io/api/pypi/${PYPI_PACKAGE}/usage?api_key=${LIB_IO_API_KEY}" >> libraries-io-usage-${CURRENT_EPOCH_TIME}.json
 #Get repos dependent on apache-airflow
-curl "https://libraries.io/api/pypi/${PYPI_PACKAGE}/dependent_repositories?api_key=${LIB_IO_API_KEY}" >> libraries-io-dependent-repos.json
+curl "https://libraries.io/api/pypi/${PYPI_PACKAGE}/dependent_repositories?api_key=${LIB_IO_API_KEY}" >> libraries-io-dependent-repos-${CURRENT_EPOCH_TIME}.json
 
 ##########
 # GITHUB #
 ##########
 
 # Get a bunch of info about the repos - store it in file
-curl "https://api.github.com/repos/${GITHUB_ORG}/${GITHUB_REPO}" >> github-repo-info-${GITHUB_REPO}.json
+curl "https://api.github.com/repos/${GITHUB_ORG}/${GITHUB_REPO}" >> github-repo-info-${GITHUB_REPO}-${CURRENT_EPOCH_TIME}.json
 
 # Get top 100 contributors and store in file
-curl "https://api.github.com/repos/${GITHUB_ORG}/${GITHUB_REPO}/stats/contributors" >> github-contributors-${GITHUB_REPO}.json
+curl "https://api.github.com/repos/${GITHUB_ORG}/${GITHUB_REPO}/stats/contributors" >> github-contributors-${GITHUB_REPO}-${CURRENT_EPOCH_TIME}.json
 
 
